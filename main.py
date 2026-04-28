@@ -1,13 +1,14 @@
-from astroquery.mast import Observations
+import lightkurve as lk
+import sys
+
 
 def main():
-    obs_table = Observations.query_object("M8", radius=".02 deg")
-    df = obs_table.to_pandas()
+    lc = lk.search_lightcurve("HD39091").download()  # Pi Men
+    if lc is None:
+        sys.exit(1)
 
-    print("Column names: \n", list(df))
-    print()
-    print(df.describe())
-
+    lc = lc.normalize().flatten()
+    lc.interact_bls()
 
 
 if __name__ == "__main__":
