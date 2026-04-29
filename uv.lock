@@ -565,20 +565,28 @@ name = "exo-scraper"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
-    { name = "bokeh" },
-    { name = "jupyter" },
     { name = "lightkurve" },
     { name = "matplotlib" },
     { name = "pandas" },
 ]
 
+[package.dev-dependencies]
+dev = [
+    { name = "bokeh" },
+    { name = "jupyter" },
+]
+
 [package.metadata]
 requires-dist = [
-    { name = "bokeh", specifier = ">=3.9.0" },
-    { name = "jupyter", specifier = ">=1.1.1" },
     { name = "lightkurve", specifier = ">=2.5.1" },
     { name = "matplotlib", specifier = ">=3.10.9" },
     { name = "pandas", specifier = ">=3.0.2" },
+]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "bokeh", specifier = ">=3.9.0" },
+    { name = "jupyter", specifier = ">=1.1.1" },
 ]
 
 [[package]]

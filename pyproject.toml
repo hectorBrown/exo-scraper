@@ -1,13 +1,17 @@
 [project]
 name = "exo-scraper"
 version = "0.1.0"
-description = "Add your description here"
+description = "A cloud-hosted app to analyse MAST data of star brightness in the search for exoplanets using Python's lightkurve library."
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
-    "bokeh>=3.9.0",
-    "jupyter>=1.1.1",
     "lightkurve>=2.5.1",
     "matplotlib>=3.10.9",
     "pandas>=3.0.2",
+]
+
+[dependency-groups]
+dev = [
+    "bokeh>=3.9.0",
+    "jupyter>=1.1.1",
 ]
