@@ -3,12 +3,13 @@ import sys
 
 
 def main():
-    lc = lk.search_lightcurve("HD39091").download()  # Pi Men
+    lc = lk.search_lightcurve('HD39091').download()  # Pi Men
     if lc is None:
         sys.exit(1)
 
     lc = lc.normalize().flatten()
     lc.interact_bls()
+     a=1+1
 
 
 if __name__ == "__main__":
