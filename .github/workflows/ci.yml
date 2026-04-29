@@ -51,7 +51,7 @@ jobs:
         run: uv sync --locked --all-extras --dev
 
       - name: Check code with ruff linter
-        run: uv ru run ruff check .
+        run: uv run ruff check
 
       - name: Format code with ruff format
         run: uv run ruff format --diff
