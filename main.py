@@ -13,12 +13,16 @@ def main():
 def get_exos(
     star_name: str, min_orbit: float, max_orbit: float
 ) -> tuple[Quantity, Quantity, Quantity, Quantity] | None:
-    """
-    Given a star name, return the period, transit time, duration and SNR of the
-    highest peak in the BLS periodogram.
+    """Given a star name, return details about it's exoplanets.
+
+    Uses the lightkurve library to search for light curves of the specified
+    star, stitch them together, and then compute a BLS periodogram to identify
+    potential exoplanet transits. The function returns the period, transit
+    time, duration, and signal-to-noise ratio corresponding to the highest peak
+    in the BLS periodogram, or None if no significant peaks are found.
 
     Args:
-        star_name (str): The name of the star to analyze.
+        star_name (float): The name of the star to analyze.
         min_orbit (float): The minimum orbital period to search for, in days.
         max_orbit (float): The maximum orbital period to search for, in days.
 
@@ -28,7 +32,6 @@ def get_exos(
             the highest peak in the BLS periodogram, or None if no results are
             found.
     """
-
     # TODO: change this to search SPOC/TESS for bigger data source -- unless the star exists in Kepler in which case we should use their sexy data
     search_res = lk.search_lightcurve(star_name, author="Kepler", cadence="long")
 
@@ -72,8 +75,7 @@ def get_exos(
 
 
 def get_cadence(lc: TessLightCurve) -> int | None:
-    """
-    Given a light curve, return its cadence in seconds.
+    """Given a light curve, return its cadence in seconds.
 
     Args:
         lc (TessLightCurve): The light curve for which to calculate the cadence.
@@ -95,8 +97,7 @@ def get_cadence(lc: TessLightCurve) -> int | None:
 
 
 def get_lightcurves(collection: SearchResult) -> LightCurveCollection | None:
-    """
-    Given a SearchCollection, download the light curves and return them as a list.
+    """Given a SearchCollection, download the light curves and return them as a list.
 
     Args:
         collection (SearchCollection): The SearchCollection containing the light curve search results.
@@ -112,8 +113,7 @@ def get_lightcurves(collection: SearchResult) -> LightCurveCollection | None:
 
 
 def get_salgov_window(cadence: float) -> int:
-    """
-    Return the optimal window length for the Savitzky-Golay filter based on the star's properties.
+    """Return the optimal window length for the Savitzky-Golay filter based on the star's properties.
 
     Args:
         cadence (float): The cadence of the light curve data, in seconds.
@@ -121,7 +121,6 @@ def get_salgov_window(cadence: float) -> int:
     Returns:
         int: The optimal window length for the Savitzky-Golay filter, calculated based on the star's properties.
     """
-
     # placeholder function -- literally just returns 15 hours
     # TODO: need to optimise this against stellar variability
     window_length = int(15 * 60 * 60 / cadence)  #
